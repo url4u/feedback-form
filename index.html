@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Meta tags for SEO -->
+  <meta name='keywords' content=" url4u, resource library for ui, ui kit, ui demos, ui refrences " />
+  <meta name='description' content=' Interactive feedback form for any website with jquery validation -- url4u is Unique Resource Library for you, Here you get all types of Resource readymade for your project. please it is very easy to use css framework for start new project ' />
+  <meta property='og:title' content='Feedback Form' />
+  <meta property='og:url' content='http://url4u.in/demo/feedback-form//' />
+  <meta property='og:type' content='website' />
+  <meta property='og:image' content='http://url4u.in/demo/feedback-form/images/site-seo.jpg' />
+  <meta property='og:site_name' content='url4u [Unique Resource Library]' />
+  <meta property='og:description' content=' Interactive feedback form for any website with jquery validation ' />
+  <!-- Meta tags for SEO -->
+
+  <!-- Favicons -->
+  <!--  genrate all favicon images from  https://realfavicongenerator.net/ -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="images/favicons/manifest.json">
+  <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="images/favicons/favicon.ico">
+  <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#6e7980">
+  <!-- Favicons -->
+
+  
+  <!-- Google Analytics code -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-87462560-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- Google Analytics code -->
+  
+
+
+  <title>Feedback Form - url4u [Unique Resource Library]</title>
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+</head>
+
+  <body class="">
+    <div class="loader">
+      <div></div>
+    </div>
+    <div class="wrapper ">
+      <div class="feedback-form-cnt">
+  <div class="button">
+    <span></span>
+  </div>
+  <div class="feedback-form">
+    <form action="" class="checkform">
+      <div class="form-layout animated">
+        <div class="form-row">
+          <div class="form-field madatory">
+            <label for="lablefor1">Name</label>
+            <input type="text" name="name" required="required" data-validate="text">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field madatory">
+            <label for="lablefor2">Email</label>
+            <input type="text" name="email" required data-validate="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field madatory">
+            <label for="lablefor3">Feedback</label>
+            <textarea rows="8" cols="80" name="feedback" data-validate="textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field madatory">
+            <input type="button" class="box-btn secondary-btn" id="feedbackForm" value="Submit">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+    </div>
+    
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TimelineMax.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/plugins/BezierPlugin.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/plugins/CSSPlugin.min.js" charset="utf-8"></script>
+<script>
+  // feedback form script
+  $(window).on('load',function(){
+    var openFeedbackForm = new TimelineMax({paused:true});
+    openFeedbackForm.set('.feedback-form-cnt',{clearProps:"all"});
+    openFeedbackForm.to('.feedback-form-cnt',1,{
+      css:{
+        position: 'fixed',
+        width: '100%',
+        height: '100%',
+        zIndex: 500,
+        borderRadius: 0,
+        left: 0,
+        bottom: 0
+      },
+      ease: Expo.easeInOut
+    })
+    .from('.feedback-form',.1,{
+      autoAlpha: 0,
+    },'-=1')
+    .staggerFrom('.feedback-form .form-row',.5,{
+      autoAlpha: 0,
+      y: 50,
+      ease: Back.easeOut
+    },.2,'-=.1')
+    $('.feedback-form-cnt .button').on('click',function(){
+      if($(this).hasClass('active')){
+        $('.feedback-form-cnt .button').removeClass('active');
+        openFeedbackForm.reverse().timeScale(2);
+      }
+      else{
+        $(this).addClass('active');
+        openFeedbackForm.play().timeScale(1.5);
+        $('.feedback-form-cnt',)
+      }
+    })
+    $('#feedbackForm').on('click',function(){
+      if(validateCheckForm(this)){
+        $('.feedback-form-cnt .button').removeClass('active');
+        openFeedbackForm.reverse().timeScale(2);
+      }
+      else{
+      }
+    });
+  });
+</script>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js" charset="utf-8"></script>
+  <script src="scripts/validation.js" charset="utf-8"></script>
+
+<script src="scripts/common.js" charset="utf-8"></script>
+
+  </body>
+</html>
